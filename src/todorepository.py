@@ -12,11 +12,17 @@ class Task:
         self.updatedAt = now
 
 
+# fixme
+# actions should return a type
+# but Task doesnt have an id while values returned from storage does have an id
+# consider extracting Task from repository so controller could reuse the same interface?
+
+
 class TodoRepository:
     def __init__(self, storage: Storage):
         self.storage = storage
 
-    def add(self, description: str) -> int:
+    def add(self, description: str):
         task = Task(description)
 
         return self.storage.insert(task)

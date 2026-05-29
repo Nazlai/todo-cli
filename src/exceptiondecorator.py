@@ -1,4 +1,8 @@
+from functools import wraps
+
+
 def log_exception(func):
+    @wraps(func)
     def wrapper(*args):
         try:
             return func(*args)

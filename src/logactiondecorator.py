@@ -1,5 +1,9 @@
+from functools import wraps
+
+
 def log_action(action: str):
     def result_action(func):
+        @wraps(func)
         def wrapper(*args):
             result = func(*args)
 

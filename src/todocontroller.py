@@ -1,5 +1,4 @@
 from .todorepository import TodoRepository
-from .logactiondecorator import log_action
 from .logresultdecorator import log_result
 from .exceptiondecorator import log_exception
 from .logalldecorator import log_all_items
@@ -11,37 +10,31 @@ class TodoController:
         self.repository = repository
 
     @log_result
-    @log_action("add")
     def add(self, payload: str):
         return self.repository.add(payload)
 
     @log_exception
     @log_result
-    @log_action("update")
     def update(self, id: str, description: str):
         return self.repository.edit(id, description)
 
     @log_exception
     @log_result
-    @log_action("delete")
     def delete(self, id: str):
         return self.repository.remove(id)
 
     @log_exception
     @log_result
-    @log_action("mark todo")
     def mark_todo(self, id: str):
         return self.repository.edit_status(id, Status.TODO)
 
     @log_exception
     @log_result
-    @log_action("mark in progress")
     def mark_in_progress(self, id: str):
         return self.repository.edit_status(id, Status.IN_PROGRESS)
 
     @log_exception
     @log_result
-    @log_action("mark done")
     def mark_done(self, id: str):
         return self.repository.edit_status(id, Status.DONE)
 
@@ -52,6 +45,5 @@ class TodoController:
 
     @log_exception
     @log_result
-    @log_action("get by id")
     def get_by_id(self, id: str):
         return self.repository.find(id)

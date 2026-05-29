@@ -52,5 +52,5 @@ class TodoController:
     @exception_decorator
     @log_result_decorator
     @log_action_decorator("get by id")
-    def getById(self, id: str):
+    def get_by_id(self, id: str):
         return self.repository.find(id)

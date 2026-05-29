@@ -11,7 +11,7 @@ commands = {
     "mark_in_progress",
     "mark_done",
     "list",
-    "getById",
+    "get_by_id",
 }
 
 

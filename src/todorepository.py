@@ -18,9 +18,8 @@ class TodoRepository:
 
     def add(self, description: str) -> int:
         task = Task(description)
-        id = self.storage.insert(task)
 
-        return id
+        return self.storage.insert(task)
 
     def edit(self, id: str, description: str):
         return self.storage.update(id, {"description": description})

@@ -1,4 +1,4 @@
-def log_all_decorator(func):
+def log_all_items(func):
     def wrapper(*args):
         result = func(*args)
         if result:

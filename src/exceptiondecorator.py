@@ -1,4 +1,4 @@
-def exception_decorator(func):
+def log_exception(func):
     def wrapper(*args):
         try:
             return func(*args)

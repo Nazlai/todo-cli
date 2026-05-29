@@ -1,4 +1,4 @@
-def log_result_decorator(func):
+def log_result(func):
     def wrapper(*args):
         result = func(*args)
 

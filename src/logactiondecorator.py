@@ -1,4 +1,4 @@
-def log_action_decorator(action: str):
+def log_action(action: str):
     def result_action(func):
         def wrapper(*args):
             result = func(*args)

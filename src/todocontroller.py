@@ -1,8 +1,8 @@
 from .todorepository import TodoRepository
-from .logactiondecorator import log_action_decorator
-from .logresultdecorator import log_result_decorator
-from .exceptiondecorator import exception_decorator
-from .logalldecorator import log_all_decorator
+from .logactiondecorator import log_action
+from .logresultdecorator import log_result
+from .exceptiondecorator import log_exception
+from .logalldecorator import log_all_items
 from .statusenum import Status
 
 
@@ -10,48 +10,48 @@ class TodoController:
     def __init__(self, repository: TodoRepository):
         self.repository = repository
 
-    @log_result_decorator
-    @log_action_decorator("add")
+    @log_result
+    @log_action("add")
     def add(self, payload: str):
         return self.repository.add(payload)
 
-    @exception_decorator
-    @log_result_decorator
-    @log_action_decorator("update")
+    @log_exception
+    @log_result
+    @log_action("update")
     def update(self, id: str, description: str):
         return self.repository.edit(id, description)
 
-    @exception_decorator
-    @log_result_decorator
-    @log_action_decorator("delete")
+    @log_exception
+    @log_result
+    @log_action("delete")
     def delete(self, id: str):
         return self.repository.remove(id)
 
-    @exception_decorator
-    @log_result_decorator
-    @log_action_decorator("mark todo")
+    @log_exception
+    @log_result
+    @log_action("mark todo")
     def mark_todo(self, id: str):
         return self.repository.edit_status(id, Status.TODO)
 
-    @exception_decorator
-    @log_result_decorator
-    @log_action_decorator("mark in progress")
+    @log_exception
+    @log_result
+    @log_action("mark in progress")
     def mark_in_progress(self, id: str):
         return self.repository.edit_status(id, Status.IN_PROGRESS)
 
-    @exception_decorator
-    @log_result_decorator
-    @log_action_decorator("mark done")
+    @log_exception
+    @log_result
+    @log_action("mark done")
     def mark_done(self, id: str):
         return self.repository.edit_status(id, Status.DONE)
 
-    @exception_decorator
-    @log_all_decorator
+    @log_exception
+    @log_all_items
     def list(self, status: Status = None):
         return self.repository.find_all(status)
 
-    @exception_decorator
-    @log_result_decorator
-    @log_action_decorator("get by id")
+    @log_exception
+    @log_result
+    @log_action("get by id")
     def get_by_id(self, id: str):
         return self.repository.find(id)

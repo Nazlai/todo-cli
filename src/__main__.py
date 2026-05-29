@@ -37,7 +37,7 @@ def main():
         method(*sys.argv[2:])
 
     if command not in commands:
-        print("did you mean one of the following command?")
+        print("did you mean one of the following commands?")
 
         for i in commands:
             print(i)

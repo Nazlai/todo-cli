@@ -18,5 +18,5 @@ pip3 install -r requirements.txt
 - mark_todo: changes a todo's status to todo
 - mark_in_progress: changes a todo's status to in progress
 - mark_done: changes a todo's status to done
-- list(status): retrieves a list of todos, pass todo status to query todos by matching status
+- list([status](./src/statusenum.py)): retrieves a list of todos, pass todo status to query todos by matching status
 - get_by_id: retrieves a todo by id

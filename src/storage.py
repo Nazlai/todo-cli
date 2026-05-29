@@ -44,7 +44,7 @@ class Storage:
                 dict = {**content.__dict__, "id": id}
                 json.dump({id: dict}, file, default=str, indent=4)
 
-        return id
+        return dict
 
     def update(self, id: str, content):
         with open(self.file_path, "r+") as file:
@@ -52,8 +52,12 @@ class Storage:
                 storageJson = json.loads(file.read())
                 if id not in storageJson:
                     raise NotFoundException
-                updatedContent = {**content, "updatedAt": datetime.now()}
-                storageJson[id] = {**storageJson[id], **updatedContent}
+                updatedContent = {
+                    **storageJson[id],
+                    **content,
+                    "updatedAt": datetime.now(),
+                }
+                storageJson[id] = updatedContent
                 file.seek(0)
                 file.truncate(0)
                 json.dump(storageJson, file, default=str, indent=4)

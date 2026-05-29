@@ -47,9 +47,4 @@ class TodoRepository:
         return dict(result)
 
     def find(self, id: str):
-        task = self.storage.find(id)
-
-        if task:
-            return task
-
-        return None
+        return self.storage.find(id)

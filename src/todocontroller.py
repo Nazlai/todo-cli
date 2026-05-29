@@ -1,44 +1,38 @@
 from .todorepository import TodoRepository, Status
+from .logactiondecorator import log_action_decorator
 
 
 class TodoController:
     def __init__(self, repository: TodoRepository):
         self.repository = repository
 
-    def add(self, payload: str) -> str:
-        id = self.repository.add(payload)
+    @log_action_decorator("add")
+    def add(self, payload: str):
+        return self.repository.add(payload)
 
-        print(f"Task added successfully (ID: {id})")
-
+    @log_action_decorator("update")
     def update(self, id: str, description: str):
-        self.repository.edit(id, description)
+        return self.repository.edit(id, description)
 
-        print(f"Task updated successfully (ID: {id})")
-
+    @log_action_decorator("delete")
     def delete(self, id: str):
-        self.repository.remove(id)
+        return self.repository.remove(id)
 
-        # fixme
-        # currently prints message even if id is not found in storage
-        print(f"Task deleted successfully (ID: {id})")
-
+    @log_action_decorator("mark todo")
     def mark_todo(self, id: str):
-        self.repository.edit_status(id, Status.TODO)
+        return self.repository.edit_status(id, Status.TODO)
 
-        print(f"Task updated successfully (ID: {id})")
-
+    @log_action_decorator("mark in progress")
     def mark_in_progress(self, id: str):
-        self.repository.edit_status(id, Status.IN_PROGRESS)
+        return self.repository.edit_status(id, Status.IN_PROGRESS)
 
-        print(f"Task updated successfully (ID: {id})")
-
+    @log_action_decorator("mark done")
     def mark_done(self, id: str):
-        self.repository.edit_status(id, Status.DONE)
-
-        print(f"Task updated successfully (ID: {id})")
+        return self.repository.edit_status(id, Status.DONE)
 
     def list(self, status: Status = None):
-        print(self.repository.find_all(status))
+        return self.repository.find_all(status)
 
+    @log_action_decorator("get by id")
     def getById(self, id: str):
-        print(self.repository.find(id))
+        return self.repository.find(id)

@@ -64,11 +64,7 @@ class Storage:
 
                 return updatedContent
             except Exception as e:
-                # improve me
-                if hasattr(e, "message"):
-                    print(e.message)
-                else:
-                    print(e)
+                raise e
 
     def delete(self, id: str):
         with open(self.file_path, "r+") as file:
@@ -85,10 +81,7 @@ class Storage:
 
                 return removed
             except Exception as e:
-                if hasattr(e, "message"):
-                    print(e.message)
-                else:
-                    print(e)
+                raise e
 
     def find(self, id: str):
         with open(self.file_path, "r") as file:
@@ -99,10 +92,7 @@ class Storage:
 
                 return storageJson[id]
             except Exception as e:
-                if hasattr(e, "message"):
-                    print(e.message)
-                else:
-                    print(e)
+                raise e
 
     def find_all(self):
         with open(self.file_path, "r") as file:
@@ -111,5 +101,4 @@ class Storage:
 
                 return storageJson
             except Exception as e:
-                # improve me
-                print(e)
+                raise e

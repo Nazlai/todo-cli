@@ -2,6 +2,7 @@ from .todorepository import TodoRepository, Status
 from .logactiondecorator import log_action_decorator
 from .logresultdecorator import log_result_decorator
 from .exceptiondecorator import exception_decorator
+from .logalldecorator import log_all_decorator
 
 
 class TodoController:
@@ -44,7 +45,7 @@ class TodoController:
         return self.repository.edit_status(id, Status.DONE)
 
     @exception_decorator
-    @log_result_decorator
+    @log_all_decorator
     def list(self, status: Status = None):
         return self.repository.find_all(status)
 

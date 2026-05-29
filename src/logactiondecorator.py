@@ -6,7 +6,7 @@ def log_action_decorator(action: str):
             if result and "id" in result:
                 print(f"{action} action successful, ID: {str(result['id'])}")
 
-                return result
+            return result
 
         return wrapper
 

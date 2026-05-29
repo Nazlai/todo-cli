@@ -1,8 +1,9 @@
-from .todorepository import TodoRepository, Status
+from .todorepository import TodoRepository
 from .logactiondecorator import log_action_decorator
 from .logresultdecorator import log_result_decorator
 from .exceptiondecorator import exception_decorator
 from .logalldecorator import log_all_decorator
+from .statusenum import Status
 
 
 class TodoController:

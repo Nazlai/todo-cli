@@ -1,12 +1,6 @@
-from enum import Enum
 from datetime import datetime
 from .storage import Storage
-
-
-class Status(str, Enum):
-    TODO: str = "TODO"
-    IN_PROGRESS: str = "IN_PROGRESS"
-    DONE: str = "DONE"
+from .statusenum import Status
 
 
 class Task:
